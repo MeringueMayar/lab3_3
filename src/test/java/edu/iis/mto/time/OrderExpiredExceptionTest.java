@@ -17,7 +17,7 @@ public class OrderExpiredExceptionTest {
     private OrderItem orderItem = new OrderItem();
 
     @Test(expected = OrderExpiredException.class)
-    public void testSomeMethod() {
+    public void testConfirmMethodAfter24HoursTriggersOrderExpiredException() {
         Order spiedOrder = Mockito.spy(new Order());
         Mockito.doReturn(25).when(
                 spiedOrder).getHoursBetweenSubmitionDateAndConfirmationDate();
