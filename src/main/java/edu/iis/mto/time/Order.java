@@ -34,7 +34,7 @@ public class Order {
 
 	public void confirm() {
 		requireState(State.SUBMITTED);
-		int hoursElapsedAfterSubmittion = Hours.hoursBetween(subbmitionDate, new DateTime()).getHours();
+		int hoursElapsedAfterSubmittion = getHoursBetweenSubmitionDateAndConfirmationDate();
 		if(hoursElapsedAfterSubmittion > VALID_PERIOD_HOURS){
 			orderState = State.CANCELLED;
 			throw new OrderExpiredException();
@@ -65,4 +65,8 @@ public class Order {
 	public static enum State {
 		CREATED, SUBMITTED, CONFIRMED, REALIZED, CANCELLED
 	}
+        
+        public int getHoursBetweenSubmitionDateAndConfirmationDate(){
+            return Hours.hoursBetween(subbmitionDate, new DateTime()).getHours();
+        }
 }
